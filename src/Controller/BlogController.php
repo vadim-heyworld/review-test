@@ -123,16 +123,9 @@ final class BlogController extends AbstractController
             $entityManager->persist($comment);
             $entityManager->flush();
 
-            // When an event is dispatched, Symfony notifies it to all the listeners
-            // and subscribers registered to it. Listeners can modify the information
-            // passed in the event and they can even modify the execution flow, so
-            // there's no guarantee that the rest of this controller will be executed.
-            // See https://symfony.com/doc/current/components/event_dispatcher.html
-            //
-            // If you prefer to process comments asynchronously (e.g. to perform some
-            // heavy tasks on them) you can use the Symfony Messenger component.
-            // See https://symfony.com/doc/current/messenger.html
-            $eventDispatcher->dispatch(new CommentCreatedEvent($comment));
+            //$eventDispatcher->dispatch(new CommentCreatedEvent($comment));
+
+            var_dump($comment);
 
             return $this->redirectToRoute('blog_post', ['slug' => $post->getSlug()], Response::HTTP_SEE_OTHER);
         }
